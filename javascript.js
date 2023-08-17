@@ -3,41 +3,41 @@ function getComputerChoice() {
 
   switch (ranNum) {
     case 1:
-      return "rock";
+      return "ROCK";
     case 2:
-      return "paper";
+      return "PAPER";
     case 3:
-      return "scissors";
+      return "SCISSORS";
   }
 }
 
 function play() {
   switch (playerSelection) {
-    case "rock":
+    case "ROCK":
       switch (compChoice) {
-        case "rock":
+        case "ROCK":
           return "Draw";
-        case "paper":
+        case "PAPER":
           return "Lose";
-        case "scissors":
+        case "SCISSORS":
           return "Win";
       }
-    case "paper":
+    case "PAPER":
       switch (compChoice) {
-        case "rock":
+        case "ROCK":
           return "Win";
-        case "paper":
+        case "PAPER":
           return "Draw";
-        case "scissors":
+        case "SCISSORS":
           return "Lose";
       }
-    case "scissors":
+    case "SCISSORS":
       switch (compChoice) {
-        case "rock":
+        case "ROCK":
           return "Lose";
-        case "paper":
+        case "PAPER":
           return "Win";
-        case "scissors":
+        case "SCISSORS":
           return "Draw";
       }
     default:
@@ -45,11 +45,25 @@ function play() {
   }
 }
 
+const uScore = document.querySelector("#userScore");
+const cScore = document.querySelector("#compScore");
+const rScore = document.querySelector("#roundNum");
+const newGame = document.querySelector("#newGame");
+const buttonChoice = document.querySelectorAll(".buttons");
+const winName = document.querySelector('#winner');
+
+
+let userScore = 0;
+let compScore = 0;
+let rounds = 1;
+
 function resetScore() {
   userScore = 0;
   compScore = 0;
   rounds = 1;
   // Update displayed round count
+  uScore.textContent = userScore;
+  cScore.textContent = compScore;
   rScore.textContent = rounds;
 }
 
@@ -57,11 +71,19 @@ let userScore = 0;
 let compScore = 0;
 let rounds = 1;
 
-const uScore = document.querySelector("#userScore");
-const cScore = document.querySelector("#compScore");
-const rScore = document.querySelector("#roundNum");
-const newGame = document.querySelector("#newGame");
-const buttonChoice = document.querySelectorAll(".buttons");
+function winner(){
+  if(userScore == 5){
+    winName.textContent='You Won Last Round'
+    alert("You Win")
+    resetScore()
+    
+  }
+  else if (compScore == 5){
+    winName.textContent='You Lost Last Round'
+    alert("You Lost")
+    resetScore()
+  }
+  }
 
 buttonChoice.forEach(button => button.addEventListener("click", () => {
   playerSelection = button.textContent;
@@ -75,7 +97,33 @@ buttonChoice.forEach(button => button.addEventListener("click", () => {
     rounds += 1;
   }
 
-  // Update displayed scores and round count
+   winner()
+  
+
+  uScore.textContent = userScore;
+  cScore.textContent = compScore;
+  rScore.textContent = rounds;
+}));
+
+
+
+
+newGame.addEventListener("click", resetScore);
+
+
+
+buttonChoice.forEach(button => button.addEventListener("click", () => {
+  playerSelection = button.textContent;
+  compChoice = getComputerChoice();
+  result = play();
+  if (result === "Win") {
+    userScore += 1;
+    rounds += 1;
+  } else if (result === "Lose") {
+    compScore += 1;
+    rounds += 1;
+  }
+
   uScore.textContent = userScore;
   cScore.textContent = compScore;
   rScore.textContent = rounds;

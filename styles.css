@@ -1,0 +1,22 @@
+h1 {
+    font-size: 60px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+body {
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+
+}
+
+.container{
+    display:flex;
+    justify-content: space-around;
+    font-size: 40px;
+}
+
+
+#newGameContainer{
+    flex-direction: column;
+}
