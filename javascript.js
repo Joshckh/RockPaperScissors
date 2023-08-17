@@ -1,90 +1,84 @@
-function getComputerChoice() { //to get a either rock paper or scissors//
-  let ranNum = Math.floor(Math.random() * 3)+1;
+function getComputerChoice() {
+  let ranNum = Math.floor(Math.random() * 3) + 1;
 
-  switch (ranNum) { // pick an outcome
+  switch (ranNum) {
     case 1:
       return "rock";
-      break;
     case 2:
       return "paper";
-      break;
     case 3:
       return "scissors";
-      break;
   }
 }
 
-function play(){
-  let compChoice = getComputerChoice() ;
-  let playerSelection = prompt("Rock, Paper, Scissors ?").toLowerCase()
+function play() {
   switch (playerSelection) {
     case "rock":
-        switch (compChoice) {
-            case "rock":
-                return "Draw";
-            case "paper":
-                return "Lose";
-            case "scissors":
-                return "Win";
-        }
-        break;
+      switch (compChoice) {
+        case "rock":
+          return "Draw";
+        case "paper":
+          return "Lose";
+        case "scissors":
+          return "Win";
+      }
     case "paper":
-        switch (compChoice) {
-            case "rock":
-                return "Win";
-            case "paper":
-                return "Draw";
-            case "scissors":
-                return "Lose";
-        }
-        break;
+      switch (compChoice) {
+        case "rock":
+          return "Win";
+        case "paper":
+          return "Draw";
+        case "scissors":
+          return "Lose";
+      }
     case "scissors":
-        switch (compChoice) {
-            case "rock":
-                return "Lose";
-            case "paper":
-                return "Win";
-            case "scissors":
-                return "Draw";
-        }
-        break;
+      switch (compChoice) {
+        case "rock":
+          return "Lose";
+        case "paper":
+          return "Win";
+        case "scissors":
+          return "Draw";
+      }
     default:
-        return "Invalid input";
+      return "Invalid input";
   }
-
 }
 
-let playerScore = 0;
-let compScore = 0;
-
-function game() {
-  round = 0;
-  playerScore = 0;
+function resetScore() {
+  userScore = 0;
   compScore = 0;
-  
-  do {
-    let result = play()
-    if (result === "Win"){
-      playerScore ++
-      console.log("You won 1 point")
-      console.log(playerScore);
-      console.log(compScore);
-    }
-    else if (result === "Lose"){
-      compScore++
-      console.log("Computer won 1 point")
-      console.log(playerScore);
-      console.log(compScore);
-    }
-    else {
-    console.log("Draw")
-    console.log(playerScore);
-    console.log(compScore);
-  }
-  }
-  while (playerScore < 3 && compScore < 3)
+  rounds = 1;
+  // Update displayed round count
+  rScore.textContent = rounds;
 }
 
+let userScore = 0;
+let compScore = 0;
+let rounds = 1;
 
-game();
+const uScore = document.querySelector("#userScore");
+const cScore = document.querySelector("#compScore");
+const rScore = document.querySelector("#roundNum");
+const newGame = document.querySelector("#newGame");
+const buttonChoice = document.querySelectorAll(".buttons");
 
+buttonChoice.forEach(button => button.addEventListener("click", () => {
+  playerSelection = button.textContent;
+  compChoice = getComputerChoice();
+  result = play();
+  if (result === "Win") {
+    userScore += 1;
+    rounds += 1;
+  } else if (result === "Lose") {
+    compScore += 1;
+    rounds += 1;
+  }
+
+  // Update displayed scores and round count
+  uScore.textContent = userScore;
+  cScore.textContent = compScore;
+  rScore.textContent = rounds;
+}));
+
+newGame.addEventListener("click", resetScore);
