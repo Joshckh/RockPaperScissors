@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>ROCK Papper SCISSORS</title>
-    <link rel="stylesheet" href="styles.css">
-  
-  
+    <link rel="stylesheet" href="styles.css">  
   </head>
 <body>
 <h1>BacMan's ROCK PAPER SCISSORS</h1>
@@ -15,7 +13,7 @@
     <p id ="userScore"></p>
     <p>Player's Score</p>
   </div>
-  <div id ="round">
+  <div class="scoreBoard" id ="round">
     <p>Round</p>
     <p id ="roundNum"></p>
   </div>
@@ -24,15 +22,17 @@
     <p>Computer's Score</p>
   </section>
   
-  <section class="container">
+  <section >
+    <div class="container">
    <button class="buttons"  id="ROCK">ROCK</button>
    <button class="buttons"  id="PAPER">PAPER</button>
    <button class="buttons"  id="SCISSORS">SCISSORS</button>
+  </div>
   </section>
 
-  <section class="container" id="newGameContainer">
+  <section id="btmContainer">
     <div id="winner"></div>
-    <button id="newGame">NEW GAME</button>
+    <button id="newGameContainer">NEW GAME</button>
   </section>
   
 </body>

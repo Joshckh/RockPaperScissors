@@ -67,9 +67,6 @@ function resetScore() {
   rScore.textContent = rounds;
 }
 
-let userScore = 0;
-let compScore = 0;
-let rounds = 1;
 
 function winner(){
   if(userScore == 5){
@@ -112,21 +109,3 @@ newGame.addEventListener("click", resetScore);
 
 
 
-buttonChoice.forEach(button => button.addEventListener("click", () => {
-  playerSelection = button.textContent;
-  compChoice = getComputerChoice();
-  result = play();
-  if (result === "Win") {
-    userScore += 1;
-    rounds += 1;
-  } else if (result === "Lose") {
-    compScore += 1;
-    rounds += 1;
-  }
-
-  uScore.textContent = userScore;
-  cScore.textContent = compScore;
-  rScore.textContent = rounds;
-}));
-
-newGame.addEventListener("click", resetScore);
